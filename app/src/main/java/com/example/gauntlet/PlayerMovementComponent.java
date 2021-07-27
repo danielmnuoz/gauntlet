@@ -84,7 +84,14 @@ class PlayerMovementComponent implements MovementComponent {
                     break;
                 }
             }
-
+            for(int i = 0; i < GameMap.powerUpContainer.size(); i++)
+            {
+                if(RectF.intersects(t.getCollider(), gameMap.powerUpContainer.get(i).getLocation()))
+                {
+                    GameState.mNumShips++;
+                    GameMap.powerUpContainer.remove(i);
+                }
+            }
 
 
 

@@ -9,6 +9,7 @@ import android.graphics.*;
 public class BackgroundGraphicsComponent implements GraphicsComponent{
     private Bitmap mBitmap;
     private Bitmap wallBitmap;
+    private Bitmap powerUpBitmap;
     private GameMap gameMap;
     public static Context context;
 
@@ -37,6 +38,7 @@ public class BackgroundGraphicsComponent implements GraphicsComponent{
         int resID = c.getResources().getIdentifier(s.getBitmapName(), "drawable", c.getPackageName());
         mBitmap = BitmapFactory.decodeResource(c.getResources(), resID);
         wallBitmap = BitmapFactory.decodeResource(c.getResources(), R.drawable.redwall);
+        powerUpBitmap = BitmapFactory.decodeResource(c.getResources(), R.drawable.power_up);
         context = c;
         s1 = s;
         objectSize1 = objectSize;
@@ -46,6 +48,8 @@ public class BackgroundGraphicsComponent implements GraphicsComponent{
         mBitmap = Bitmap.createScaledBitmap(mBitmap, mScreenRes.x, mScreenRes.y, false);
         // TO DO: Confirm scaling ratio from text map to  full drawn map..
         wallBitmap = Bitmap.createScaledBitmap(wallBitmap, lowResFactor.x, lowResFactor.y, false);
+        powerUpBitmap = Bitmap.createScaledBitmap(powerUpBitmap, lowResFactor.x, lowResFactor.y, false);
+
 //        bitmapNew = Bitmap.createScaledBitmap(bitmapNew, (int)objectSize.x, (int)objectSize.y, false);
         GameData.mainBitmap = Bitmap.createBitmap(mScreenRes.x, mScreenRes.y, mBitmap.getConfig());
         GameData.initialBitmap = Bitmap.createBitmap(mScreenRes.x, mScreenRes.y, mBitmap.getConfig());
@@ -65,6 +69,12 @@ public class BackgroundGraphicsComponent implements GraphicsComponent{
                    gameMap.obstacleContainer.get(i).location.left,
                    gameMap.obstacleContainer.get(i).location.top,
                    null);
+        }
+        for (int i = 0; i < gameMap.powerUpContainer.size(); i++) {
+            canvas.drawBitmap(powerUpBitmap,
+                    gameMap.powerUpContainer.get(i).location.left,
+                    gameMap.powerUpContainer.get(i).location.top,
+                    null);
         }
 
         canvas.setBitmap(GameData.initialBitmap);
@@ -91,6 +101,7 @@ public class BackgroundGraphicsComponent implements GraphicsComponent{
         RectF backgroundPortionToDraw = m.getCollider();
         int width = (int)m.getmScreenSize().x;
         int height = (int)m.getmScreenSize().y;
+
 
 
         // Canvas = new Canvas(GameData.initialBitmap);

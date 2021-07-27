@@ -40,12 +40,13 @@ class PhysicsEngine {
                         if (RectF.intersects(go1.getTransform().getCollider(), go2.getTransform().getCollider())) {
                             switch (go1.getTag() + " with " + go2.getTag()) {
                                 case "Player with Alien":
-
+                                    playerHit = true;
+                                    mGameState.loseLife(se);
                                 case "Player with Troll":
 
                                 case "Player with Goblin":
                                     //playerHit = true;
-                                    mGameState.loseLife(se);
+                                    //mGameState.loseLife(se);
 
                                     break;
 
@@ -69,11 +70,14 @@ class PhysicsEngine {
                                     break;
 
                                 case "Player with PowerUp":
-                                    go2.setInactive();
+                                    /*go2.setInactive();
                                     //increase score by 100
                                     for(int i = 0; i < 100; i++){
                                         mGameState.increaseScore();
                                     }
+                                    /*
+                                     */
+                                    mGameState.addLife();
                                     break;
 
                                 default:

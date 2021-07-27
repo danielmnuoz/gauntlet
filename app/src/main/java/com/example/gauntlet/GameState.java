@@ -16,7 +16,7 @@ final class GameState {
 
     private int mScore;
     private int mHighScore;
-    private int mNumShips;
+    public static int mNumShips; //aka lives or health
 
     // This is how we will make all the high scores persist
     private SharedPreferences.Editor mEditor;
@@ -65,14 +65,16 @@ final class GameState {
 
 
     void loseLife(SoundEngine se){
-//        mNumShips--;
-//        se.playPlayerExplode();
+        mNumShips--;
+        se.playPlayerExplode();
         if(mNumShips == 0){
             pause();
             endGame();
         }
     }
-
+    void addLife( ){
+        mNumShips++;
+    }
     int getNumShips(){
         return mNumShips;
     }

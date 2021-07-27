@@ -17,6 +17,7 @@ public class NPCGraphicsComponent implements GraphicsComponent {
         // Scaling the bitmap object to the correct size for the game object.
         mBitmap = Bitmap.createScaledBitmap(mBitmap, (int)objectSize.x, (int)objectSize.y, false);
 
+
         Matrix matrix = new Matrix();
         matrix.setScale(-1, 1);
 

@@ -18,6 +18,7 @@ public class GameMap {
     public static Hashtable<Point, RectF> gameHashTable = new Hashtable<>();
 
     public static ArrayList<Obstacle> obstacleContainer = new ArrayList<Obstacle>();
+    public static ArrayList<Obstacle> powerUpContainer = new ArrayList<>();
     private Point lowResFactor;
     private SpatialCollision localCollisionComponent;
 
@@ -62,6 +63,11 @@ public class GameMap {
 
 //                        }
 
+                    }
+                    if(mMapMatrix[currentRow][i] == 2)
+                    {
+                        powerUpContainer.add(new Obstacle(new RectF(((i * lowResFactor.x)), (currentRow * lowResFactor.y),
+                                (i * lowResFactor.x) + 160, (currentRow * lowResFactor.y) + 160)));
                     }
 
                 }
